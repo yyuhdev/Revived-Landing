@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-grotesk: 'Space Grotesk', sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.swal-modal {
+    @apply border border-white/10 bg-black rounded-md shadow-lg;
+}
+
+.swal-title {
+    @apply text-white text-lg font-semibold;
+}
+
+.swal-text {
+    @apply text-white/90 text-base m-0;
+}
+
+.swal-button {
+    @apply bg-white text-black px-4 py-2 rounded-sm hover:bg-white/90 transition-colors;
+}
+
+.swal-button:hover {
+    @apply hover:bg-white/90 transition-colors;
+}
