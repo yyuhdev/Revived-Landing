@@ -1,4 +1,17 @@
-<script setup>
+<script>
+export default {
+    data() {
+        return {
+            searchQuery: null
+        }
+    },
+    methods: {
+        search() {
+            this.searchQuery = document.getElementById('searchBar').value;
+            this.$router.push('/player/' + this.searchQuery);
+        }
+    }
+}
 
 </script>
 
@@ -9,6 +22,8 @@
                 <img src="./img/logo.png" class="max-h-10" alt="Revived.club Logo">
                 <div class="relative flex items-center">
                     <input
+                        v-on:keyup.enter="search"
+                        id="searchBar"
                         class="border-2 border-gray-200/10 rounded-xl h-8 p-4 pl-9 focus:outline-none font-sm relative"
                         placeholder="Search for Player..."
                     >
