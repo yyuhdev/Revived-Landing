@@ -3,7 +3,7 @@
 
 <template>d
     <footer class="border-t border-gray-700/50 text-white mt-10 ">
-        <div class="max-w-[1950px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center p-6 gap-6">
+        <div class="max-w-[1950px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center p-3 gap-5">
             <div class="flex flex-col gap-2">
                 <div class="flex flex-col">
                     <p class="text-lg font-bold">Revived.club</p>
