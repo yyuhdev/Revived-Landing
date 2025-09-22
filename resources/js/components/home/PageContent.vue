@@ -97,6 +97,5 @@ export default {
                 </p>
             </div>
         </div>
-
     </div>
 </template>
