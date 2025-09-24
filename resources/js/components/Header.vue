@@ -17,7 +17,7 @@ export default {
 
 <template>
     <div class="border-b-1 border-gray-200/10 text-white sticky top-0 bg-black z-1 mb-10">
-        <div class="max-w-[1950px] flex flex-row p-3 justify-center">
+        <div class="max-w-[1950px] m-auto flex flex-row p-3 justify-center">
             <div class="flex flex-row w-1/2 gap-5">
                 <img src="./img/logo.png" class="max-h-10" alt="Revived.club Logo">
                 <div class="relative flex items-center">
