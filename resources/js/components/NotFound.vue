@@ -10,7 +10,7 @@ export default {
 
 <template>
     <Header></Header>
-    <div class="flex flex-col justify-center items-center min-h-[80vh] text-white">
+    <div class="flex flex-col justify-center items-center min-h-[90vh] text-white">
         <p class="text-6xl font-extrabold drop-shadow-lg mb-4">
             404
         </p>
