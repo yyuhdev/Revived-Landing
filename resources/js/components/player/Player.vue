@@ -49,7 +49,7 @@ export default {
                 });
         },
         getStats() {
-            axios.get('/api/player/' + this.uuid)
+            axios.get('/api/stats/' + this.uuid)
                 .then(result => {
                     this.kills = result.data.kills;
                     this.deaths = result.data.deaths;
@@ -71,7 +71,8 @@ export default {
     <Header></Header>
     <div class="text-white flex flex-col gap-10 items-center min-h-[90vh]">
 
-        <div v-if="uuid && name" class="flex bg-[#070707] border border-white/20 rounded-lg p-6 gap-6 w-3/4 md:w-1/2 shadow-lg">
+        <div v-if="uuid && name"
+             class="flex bg-[#070707] border border-white/20 rounded-lg p-6 gap-6 w-3/4 md:w-1/2 shadow-lg">
             <div class="flex justify-center items-center">
                 <img
                     alt="Skin"
@@ -120,6 +121,8 @@ export default {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 </style>

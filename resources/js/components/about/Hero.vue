@@ -11,7 +11,8 @@
                 Next Generation PVP Practice
             </h2>
             <p class="text-xl mb-8 max-w-xl mx-auto drop-shadow-sm">
-                Practice your PVP skills anytime, anywhere — sharpen your reflexes, master new strategies, and dominate the arena.
+                Practice your PVP skills anytime, anywhere — sharpen your reflexes, master new strategies, and dominate
+                the arena.
             </p>
         </div>
     </div>

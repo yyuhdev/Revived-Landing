@@ -30,14 +30,16 @@ export default {
                 class="flex bg-[#070707] border-1 border-white/30 w-1/2 p-5 rounded-sm hover:bg-white/5 transition-colors">
                 <div class="flex flex-col gap-3">
                     <h3 class="text-2xl">Quality for All</h3>
-                    <p>We aim to eliminate exclusive PVP servers by creating a high-quality, accessible PVP experience for everyone.</p>
+                    <p>We aim to eliminate exclusive PVP servers by creating a high-quality, accessible PVP experience
+                        for everyone.</p>
                 </div>
             </div>
             <div
                 class="flex bg-gray-[#070707] border-1 border-white/30 w-1/2 p-5 rounded-sm hover:bg-white/5 transition-colors">
                 <div class="flex flex-col gap-3">
                     <h3 class="text-2xl">Redefining PVP Practice</h3>
-                    <p>By utilizing the latest technologies, we are transforming PVP and practice servers while adding our own unique twist.</p>
+                    <p>By utilizing the latest technologies, we are transforming PVP and practice servers while adding
+                        our own unique twist.</p>
                 </div>
             </div>
         </div>
@@ -53,7 +55,8 @@ export default {
 
         <div class="max-w-2xl mx-auto text-center text-gray-200">
             <p>
-                Revived.club began with a simple vision: to do better. While other servers declined, we built our own systems, experimented with new ideas, and focused on creating a PVP experience that truly stands out.
+                Revived.club began with a simple vision: to do better. While other servers declined, we built our own
+                systems, experimented with new ideas, and focused on creating a PVP experience that truly stands out.
             </p>
         </div>
     </div>

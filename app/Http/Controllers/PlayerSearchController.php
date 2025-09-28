@@ -31,4 +31,62 @@ class PlayerSearchController extends Controller
 
         return ['kills' => 0, 'deaths' => 0, 'wins' => 0, 'losses' => 0];
     }
+
+    public function getGlobalStats(): array
+    {
+        $username = config('revived.username');
+        $password = config('revived.password');
+        $host = config('revived.host');
+        $database = config('revived.database');
+
+        $conn = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+
+        $sql = "SELECT * FROM stats";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function getLeaderboardStats(StatType $type): array
+    {
+        $stats = $this->getGlobalStats();
+
+        if (empty($stats)) {
+            return [];
+        }
+
+        switch ($type) {
+            case StatType::KILL: {
+                usort($stats, function($a, $b) {
+                    return $b['kills'] <=> $a['kills'];
+                });
+                return $stats;
+            }
+            case StatType::DEATH: {
+                usort($stats, function($a, $b) {
+                    return $b['deaths'] <=> $a['deaths'];
+                });
+                return $stats;
+            }
+            case StatType::WIN: {
+                usort($stats, function($a, $b) {
+                    return $b['wins'] <=> $a['wins'];
+                });
+                return $stats;
+            }
+            case StatType::LOSS: {
+                usort($stats, function($a, $b) {
+                    return $b['losses'] <=> $a['losses'];
+                });
+                return $stats;
+            }
+        }
+
+        return [];
+    }
 }

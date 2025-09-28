@@ -4,8 +4,8 @@ import Footer from "../Footer.vue";
 
 export default {
     components: {
-      Header,
-      Footer,
+        Header,
+        Footer,
     },
     data() {
         return {
@@ -73,7 +73,8 @@ export default {
                            class="w-full bg-black/30 border border-white/20 rounded px-3 py-2 focus:outline-none focus:border-white/50">
                 </div>
 
-                <button type="submit" class="bg-white px-3 py-2 text-black rounded-sm hover:bg-white/90 transition-colors hover:cursor-pointer">
+                <button type="submit"
+                        class="bg-white px-3 py-2 text-black rounded-sm hover:bg-white/90 transition-colors hover:cursor-pointer">
                     Submit Application
                 </button>
             </form>

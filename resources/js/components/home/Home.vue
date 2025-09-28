@@ -2,17 +2,13 @@
 import Header from "../Header.vue";
 import Hero from "./Hero.vue";
 import Footer from "../Footer.vue";
+import swal from "sweetalert";
 
 export default {
     components: {
-      Hero,
-      Footer,
-      Header,
-    },
-    methods: {
-        toggleFAQ(index) {
-            this.faqs[index].open = !this.faqs[index].open
-        },
+        Hero,
+        Footer,
+        Header,
     },
     data() {
         return {
@@ -34,81 +30,88 @@ export default {
                 },
             ]
         }
+    },
+    methods: {
+        toggleFAQ(index) {
+            this.faqs[index].open = !this.faqs[index].open;
+        },
+        copyIP() {
+            navigator.clipboard.writeText('Revived.club')
+                .then(() => {
+                    swal("", "Successfully copied to Clipboard");
+                });
+        }
     }
 }
-
-
 </script>
 
 <template>
     <Header></Header>
+
     <Hero></Hero>
 
-    <div class="text-white flex justify-center flex-col gap-10">
+    <div class="text-white flex flex-col justify-center gap-10 py-12 px-4">
         <div class="flex flex-col justify-center mx-auto text-center">
-            <h2 class="text-4xl font-semibold drop-shadow-md">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold drop-shadow-md mb-2">
                 Why Play on Revived.club?
             </h2>
-            <p class="text-xl max-w-xl drop-shadow-sm text-gray-300">
+            <p class="text-lg sm:text-xl max-w-xl drop-shadow-sm text-gray-300 mx-auto">
                 Discover unique Features and newest Technology.
             </p>
         </div>
-        <div class="flex w-1/2 m-auto gap-5">
-            <div
-                class="flex bg-[#070707] border-1 border-white/30 w-1/3 p-5 rounded-sm hover:bg-white/5 transition-colors">
-                <div class="flex flex-col gap-3">
-                    <h3 class="text-2xl">Duels, Sandbox & More</h3>
-                    <p>Practice your skills in duels, sandbox-fights and against PVP Bots. </p>
-                </div>
-            </div>
-            <div
-                class="flex bg-gray-[#070707] border-1 border-white/30 w-1/3 p-5 rounded-sm hover:bg-white/5 transition-colors">
-                <div class="flex flex-col gap-3">
-                    <h3 class="text-2xl">Custom Biomes</h3>
-                    <p>Explore our fully custom-coded biomes and fight others in the cpvp sandbox</p>
-                </div>
-            </div>
-            <div
-                class="flex bg-[#070707] border-1 border-white/30 w-1/3 p-5 rounded-sm hover:bg-white/5 transition-colors">
-                <div class="flex flex-col gap-3">
-                    <h3 class="text-2xl">Newest Technology</h3>
-                    <p>Revived.club features various new technologies such as ASWM, PWT and cross-server systems</p>
-                </div>
-            </div>
-        </div>
-        <div>
-        </div>
 
-        <div class="flex flex-col justify-center mx-auto text-center">
-            <h2 class="text-4xl font-semibold drop-shadow-md">
-                Frequently Asked Questions
-            </h2>
-            <p class="text-xl max-w-xl drop-shadow-sm text-gray-300">
-                Ask us anything you want to know.
-            </p>
-        </div>
-
-        <div class="w-1/2 mx-auto space-y-4">
+        <div class="flex flex-col md:flex-row w-full md:w-1/2 mx-auto gap-5">
             <div
-                v-for="(faq, index) in faqs"
-                :key="index"
-                class="bg-[#070707] border-b-2 border-white/10 p-4">
-                <button
-                    @click="toggleFAQ(index)"
-                    class="flex justify-between w-full text-left text-lg font-medium">
+                class="flex bg-[#070707] border border-white/30 w-full md:w-1/3 p-5 rounded-sm hover:bg-white/5 transition-colors">
+                <div class="flex flex-col gap-3">
+                    <h3 class="text-xl sm:text-2xl font-semibold">Duels, Sandbox & More</h3>
+                    <p class="text-gray-300">Practice your skills in duels, sandbox-fights and against PVP Bots.</p>
+                </div>
+            </div>
+
+            <div
+                class="flex bg-[#070707] border border-white/30 w-full md:w-1/3 p-5 rounded-sm hover:bg-white/5 transition-colors">
+                <div class="flex flex-col gap-3">
+                    <h3 class="text-xl sm:text-2xl font-semibold">Custom Biomes</h3>
+                    <p class="text-gray-300">Explore our fully custom-coded biomes and fight others in the cpvp
+                        sandbox.</p>
+                </div>
+            </div>
+
+            <div
+                class="flex bg-[#070707] border border-white/30 w-full md:w-1/3 p-5 rounded-sm hover:bg-white/5 transition-colors">
+                <div class="flex flex-col gap-3">
+                    <h3 class="text-xl sm:text-2xl font-semibold">Newest Technology</h3>
+                    <p class="text-gray-300">Revived.club features various new technologies such as ASWM, PWT and
+                        cross-server systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col justify-center mx-auto text-center py-12 px-4">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold drop-shadow-md mb-2">
+            Frequently Asked Questions
+        </h2>
+        <p class="text-lg sm:text-xl max-w-xl drop-shadow-sm text-gray-300 mx-auto mb-6">
+            Ask us anything you want to know.
+        </p>
+
+        <div class="w-full sm:w-4/5 md:w-1/2 mx-auto space-y-4">
+            <div v-for="(faq, index) in faqs" :key="index"
+                 class="bg-[#070707] border-b-2 border-white/10 p-4 rounded-sm text-white">
+                <button @click="toggleFAQ(index)"
+                        class="flex justify-between w-full text-left text-lg font-medium">
                     {{ faq.question }}
-                    <span
-                        class="transition-transform"
-                        :class="faq.open ? 'rotate-180' : ''">
-            ▼
-          </span>
+                    <span :class="faq.open ? 'rotate-180 transition-transform' : 'transition-transform'">▼</span>
                 </button>
-                <p v-if="faq.open" class="mt-3 text-gray-300">
+                <p v-if="faq.open" class="mt-3 text-gray-300 text-left">
                     {{ faq.answer }}
                 </p>
             </div>
         </div>
     </div>
+
     <Footer></Footer>
 </template>
 
