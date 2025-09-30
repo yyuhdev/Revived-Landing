@@ -27,7 +27,9 @@ export default {
     <div class="border-b border-gray-200/10 text-white sticky top-0 bg-black z-50">
         <div class="max-w-[1950px] m-auto flex flex-row p-3 justify-between items-center relative">
             <div :class="{'hidden': menuOpen}" class="flex items-center gap-5">
-                <img src="./img/logo.png" class="max-h-10" alt="Revived.club Logo">
+                <router-link to="/">
+                    <img src="./img/logo.png" class="max-h-10" alt="Revived.club Logo">
+                </router-link>
 
                 <div class="relative hidden sm:flex items-center">
                     <input
