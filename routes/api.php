@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\PlayerSearchController;
 use App\Http\Controllers\StatType;
 use Illuminate\Support\Facades\Http;
@@ -25,3 +26,6 @@ Route::prefix('leaderboard')
         Route::get('/stats/{stat}', [PlayerSearchController::class, 'getLeaderboardStats']);
     });
 
+Route::post('applications', [ApplicationController::class, 'saveApplication'])
+    ->middleware('throttle:2,1')
+    ->name('api.applications.save');

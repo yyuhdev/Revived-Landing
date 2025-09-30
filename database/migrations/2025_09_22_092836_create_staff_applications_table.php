@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('staff_applications', function (Blueprint $table) {
             $table->id();
+            $table->string('ign');
+            $table->string('discord_tag');
+            $table->integer('age');
+            $table->text('reason');
+            $table->text('experience');
+            $table->text('activity');
             $table->timestamps();
         });
     }

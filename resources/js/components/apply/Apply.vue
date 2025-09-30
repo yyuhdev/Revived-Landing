@@ -17,13 +17,32 @@ export default {
                 experience: "",
                 availability: ""
             },
-            submitted: false
+            submitted: false,
+            error: false
         }
     },
     methods: {
         submitForm() {
-            this.submitted = true
-            console.log("Application submitted:", this.form)
+
+
+            const applicationData = {
+                ign: this.form.username,
+                discord_tag: this.form.discord,
+                age: this.form.age,
+                reason: this.form.reason,
+                experience: this.form.experience,
+                activity: this.form.availability
+            };
+
+            axios.post('/api/applications',
+                new URLSearchParams(applicationData)
+            )
+                .then(() => {
+                    this.submitted = true;
+                })
+                .catch(e => {
+
+                })
         }
     }
 }
@@ -32,7 +51,7 @@ export default {
 
 <template>
     <Header></Header>
-    <div class="text-white flex justify-center flex-col gap-10 min-h-[90vh]">
+    <div class="text-white flex justify-center flex-col gap-10 min-h-[90vh] mt-10">
         <div class="w-1/2 mx-auto bg-[#070707] border border-white/20 rounded-lg p-8">
             <form @submit.prevent="submitForm" class="flex flex-col gap-6">
                 <div>
@@ -80,7 +99,10 @@ export default {
             </form>
 
             <div v-if="submitted" class="mt-6 text-center text-green-400 font-semibold">
-                ✅ Your application has been submitted!
+                Your application has been submitted!
+            </div>
+            <div v-if="error" class="mt-6 text-center text-red-400 font-semibold">
+                There has been an error submitting your application
             </div>
         </div>
     </div>

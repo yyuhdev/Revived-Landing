@@ -124,7 +124,9 @@ export default {
     width: 48px;
     height: 48px;
     animation: spin 1s linear infinite;
-
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 @keyframes spin {
