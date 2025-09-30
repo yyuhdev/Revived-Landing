@@ -2,7 +2,6 @@
 import Header from "../Header.vue";
 import Hero from "./Hero.vue";
 import Footer from "../Footer.vue";
-import swal from "sweetalert";
 
 export default {
     components: {
@@ -35,12 +34,6 @@ export default {
         toggleFAQ(index) {
             this.faqs[index].open = !this.faqs[index].open;
         },
-        copyIP() {
-            navigator.clipboard.writeText('Revived.club')
-                .then(() => {
-                    swal("", "Successfully copied to Clipboard");
-                });
-        }
     }
 }
 </script>

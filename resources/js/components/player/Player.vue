@@ -69,7 +69,7 @@ export default {
 
 <template>
     <Header></Header>
-    <div class="text-white flex flex-col gap-10 items-center min-h-[90vh]">
+    <div class="text-white flex flex-col gap-10 items-center min-h-[90vh] mt-10">
 
         <div v-if="uuid && name"
              class="flex bg-[#070707] border border-white/20 rounded-lg p-6 gap-6 w-3/4 md:w-1/2 shadow-lg">
