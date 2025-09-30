@@ -4,7 +4,6 @@ import Apply from "../components/apply/Apply.vue";
 import About from "../components/about/About.vue";
 import NotFound from "../components/NotFound.vue";
 import Player from "../components/player/Player.vue";
-import Gamemodes from "../components/gamemode/Gamemodes.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -12,7 +11,6 @@ const routes = [
     { path: '/about', component: About },
     { path: '/:pathMatch(.*)*', component: NotFound },
     { path: '/player/:name', component: Player},
-    { path: '/gamemodes', component: Gamemodes}
 ];
 
 const router = createRouter({

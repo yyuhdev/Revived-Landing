@@ -53,6 +53,11 @@ export default {
                 class="flex-col sm:flex-row sm:flex gap-2 w-full sm:w-auto mt-3 sm:mt-0 sm:items-center ml-auto"
             >
 
+                <router-link to="/"
+                             class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
+                    Home
+                </router-link>
+
                 <router-link to="/about"
                              class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
                     About Us
@@ -61,11 +66,6 @@ export default {
                 <router-link to="/apply"
                              class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
                     Apply
-                </router-link>
-
-                <router-link to="/"
-                             class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
-                    Home
                 </router-link>
 
                 <button @click="window.open('https://discord.gg/8AdP3b6WBU')"
