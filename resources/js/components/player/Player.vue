@@ -17,7 +17,6 @@ export default {
             this.loadingError = false;
 
             this.name = newName;
-            this.getUUID();
             this.getStats();
         }
     },
@@ -35,32 +34,42 @@ export default {
         }
     },
     methods: {
-        getUUID() {
+        getStats() {
             axios.get('/api/player/profile/' + this.name)
                 .then(result => {
                     if (result.data.errorMessage) {
                         this.loadingError = true;
                         return;
                     }
-                    this.uuid = result.data.id;
+                    this.uuid = this.formatUUID(result.data.id);
+                    console.log(this.uuid)
+                    axios.get('/api/stats/' + this.uuid)
+                        .then(result => {
+                            this.kills = result.data.kills;
+                            this.deaths = result.data.deaths;
+                            this.wins = result.data.wins;
+                            this.losses = result.data.losses;
+                        })
                 })
                 .catch(() => {
                     this.loadingError = true;
                 });
         },
-        getStats() {
-            axios.get('/api/stats/' + this.uuid)
-                .then(result => {
-                    this.kills = result.data.kills;
-                    this.deaths = result.data.deaths;
-                    this.wins = result.data.wins;
-                    this.losses = result.data.losses;
-                })
+        formatUUID(uuid) {
+            if (uuid.length !== 32) {
+                return null;
+            }
+            return (
+                uuid.substring(0, 8) + '-' +
+                uuid.substring(8, 12) + '-' +
+                uuid.substring(12, 16) + '-' +
+                uuid.substring(16, 20) + '-' +
+                uuid.substring(20)
+            );
         },
     },
     mounted() {
         this.name = this.$route.params.name;
-        this.getUUID();
         this.getStats();
     }
 }

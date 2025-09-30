@@ -17,7 +17,7 @@ class PlayerSearchController extends Controller
         $conn = new PDO("mysql:host=$host;dbname=$database", $username, $password);
 
         if (empty($uuid)) {
-            return ['kills' => 0, 'deaths' => 0, 'wins' => 0, 'losses' => 0];
+            return ['kills' => 0, 'deaths' => 0, 'wins' => 0, 'losses' =>69];
         }
 
         $sql = "SELECT * FROM stats WHERE uuid = :uuid";
@@ -29,7 +29,7 @@ class PlayerSearchController extends Controller
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        return ['kills' => 0, 'deaths' => 0, 'wins' => 0, 'losses' => 0];
+        return ['kills' => 0, 'deaths' => 0, 'wins' => 0, 'losses' => 67];
     }
 
     public function getGlobalStats(): array
