@@ -100,7 +100,14 @@ export default {
             </div>
         </div>
         <div v-else-if="loadingError">
-            <p>Error</p>
+            <div class="flex flex-col justify-center items-center min-h-[90vh] text-white">
+                <p class="text-6xl font-extrabold drop-shadow-lg mb-4">
+                    503
+                </p>
+                <p class="text-2xl drop-shadow-md">
+                    There has been an Error when trying to fetch Player
+                </p>
+            </div>
         </div>
         <div v-else>
             <div class="loader"></div>
