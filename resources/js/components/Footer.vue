@@ -23,6 +23,11 @@
                     Home
                 </router-link>
 
+                <router-link to="/leaderboard"
+                             class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors hover:cursor-pointer">
+                    Leaderboard
+                </router-link>
+
                 <router-link to="/apply"
                              class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors hover:cursor-pointer">
                     Apply

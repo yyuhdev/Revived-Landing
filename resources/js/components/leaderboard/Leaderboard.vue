@@ -68,100 +68,102 @@ export default {
 <template>
     <Header></Header>
 
-    <div class="text-white flex flex-col justify-center gap-10 py-12 px-4 min-h-screen">
-        <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto w-full">
-            <button
-                @click="setSortBy('kills')"
-                :class="sortBy === 'kills' ? 'bg-white/10' : 'bg-[#070707]'"
-                class="border border-white/30 px-6 py-2 rounded-sm hover:bg-white/5 transition-colors">
-                Sort by Kills
-            </button>
-            <button
-                @click="setSortBy('wins')"
-                :class="sortBy === 'wins' ? 'bg-white/10' : 'bg-[#070707]'"
-                class="border border-white/30 px-6 py-2 rounded-sm hover:bg-white/5 transition-colors">
-                Sort by Wins
-            </button>
-        </div>
+    <div class="min-h-screen">
+        <div v-if="!loading" class="text-white flex flex-col justify-center gap-10 py-12 px-4">
+            <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto w-full">
+                <button
+                    @click="setSortBy('kills')"
+                    :class="sortBy === 'kills' ? 'bg-white/10' : 'bg-[#070707]'"
+                    class="border border-white/30 px-6 py-2 rounded-sm hover:bg-white/5 transition-colors">
+                    Sort by Kills
+                </button>
+                <button
+                    @click="setSortBy('wins')"
+                    :class="sortBy === 'wins' ? 'bg-white/10' : 'bg-[#070707]'"
+                    class="border border-white/30 px-6 py-2 rounded-sm hover:bg-white/5 transition-colors">
+                    Sort by Wins
+                </button>
+            </div>
 
-        <div v-if="loading" class="text-center text-gray-300 text-xl">
-            Loading leaderboard...
-        </div>
+            <div v-if="error" class="text-center text-red-400 text-xl">
+                {{ error }}
+            </div>
 
-        <div v-if="error" class="text-center text-red-400 text-xl">
-            {{ error }}
-        </div>
+            <div v-if="!loading && !error && sortedLeaderboard.length > 0" class="max-w-6xl w-full mx-auto">
+                <div class="bg-[#070707] border border-white/30 rounded-sm overflow-hidden">
+                    <div class="grid grid-cols-6 gap-4 p-4 border-b border-white/20 font-semibold text-sm sm:text-base">
+                        <div class="text-left">Rank</div>
+                        <div class="text-left">Player</div>
+                        <div class="text-center">Kills</div>
+                        <div class="text-center">Deaths</div>
+                        <div class="text-center">K/D</div>
+                        <div class="text-center">Wins</div>
+                    </div>
 
-        <div v-if="!loading && !error && sortedLeaderboard.length > 0" class="max-w-6xl w-full mx-auto">
-            <div class="bg-[#070707] border border-white/30 rounded-sm overflow-hidden">
-                <div class="grid grid-cols-6 gap-4 p-4 border-b border-white/20 font-semibold text-sm sm:text-base">
-                    <div class="text-left">Rank</div>
-                    <div class="text-left">Player</div>
-                    <div class="text-center">Kills</div>
-                    <div class="text-center">Deaths</div>
-                    <div class="text-center">K/D</div>
-                    <div class="text-center">Wins</div>
+                    <div
+                        v-for="(player, index) in sortedLeaderboard.slice(0, 10)"
+                        :key="player.uuid"
+                        class="grid grid-cols-6 gap-4 p-4 border-b border-white/10 hover:bg-white/5 transition-colors items-center"
+                    >
+                        <div class="text-left font-semibold text-lg">
+                            #{{ index + 1 }}
+                        </div>
+                        <div class="text-left text-gray-300 truncate text-sm sm:text-base">
+                            {{ player.uuid.substring(0, 8) }}...
+                        </div>
+                        <div class="text-center text-green-400 font-semibold">
+                            {{ player.kills }}
+                        </div>
+                        <div class="text-center text-red-400 font-semibold">
+                            {{ player.deaths }}
+                        </div>
+                        <div class="text-center text-blue-400 font-semibold">
+                            {{ calculateKD(player.kills, player.deaths) }}
+                        </div>
+                        <div class="text-center text-yellow-400 font-semibold">
+                            {{ player.wins }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div v-if="!loading && !error && sortedLeaderboard.length === 0" class="text-center text-gray-300 text-xl">
+                No players found on the leaderboard.
+            </div>
+
+            <div v-if="!loading && !error && sortedLeaderboard.length > 0"
+                 class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl w-full mx-auto mt-8 pt-8">
+                <div class="flex flex-col text-center">
+                    <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2">
+                        {{ sortedLeaderboard.length }}
+                    </h2>
+                    <p class="text-gray-300 text-lg sm:text-xl">
+                        Total Players
+                    </p>
                 </div>
 
-                <div
-                    v-for="(player, index) in sortedLeaderboard.slice(0, 10)"
-                    :key="player.uuid"
-                    class="grid grid-cols-6 gap-4 p-4 border-b border-white/10 hover:bg-white/5 transition-colors items-center"
-                >
-                    <div class="text-left font-semibold text-lg">
-                        #{{ index + 1 }}
-                    </div>
-                    <div class="text-left text-gray-300 truncate text-sm sm:text-base">
-                        {{ player.uuid.substring(0, 8) }}...
-                    </div>
-                    <div class="text-center text-green-400 font-semibold">
-                        {{ player.kills }}
-                    </div>
-                    <div class="text-center text-red-400 font-semibold">
-                        {{ player.deaths }}
-                    </div>
-                    <div class="text-center text-blue-400 font-semibold">
-                        {{ calculateKD(player.kills, player.deaths) }}
-                    </div>
-                    <div class="text-center text-yellow-400 font-semibold">
-                        {{ player.wins }}
-                    </div>
+                <div class="flex flex-col text-center">
+                    <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2">
+                        {{ sortedLeaderboard.reduce((sum, p) => sum + p.kills, 0) }}
+                    </h2>
+                    <p class="text-gray-300 text-lg sm:text-xl">
+                        Total Kills
+                    </p>
                 </div>
 
+                <div class="flex flex-col text-center">
+                    <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2">
+                        {{ sortedLeaderboard.reduce((sum, p) => sum + p.wins, 0) }}
+                    </h2>
+                    <p class="text-gray-300 text-lg sm:text-xl">
+                        Total Wins
+                    </p>
+                </div>
             </div>
         </div>
-
-        <div v-if="!loading && !error && sortedLeaderboard.length === 0" class="text-center text-gray-300 text-xl">
-            No players found on the leaderboard.
-        </div>
-
-        <div v-if="!loading && !error && sortedLeaderboard.length > 0" class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl w-full mx-auto mt-8 pt-8">
-            <div class="flex flex-col text-center">
-                <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2">
-                    {{ sortedLeaderboard.length }}
-                </h2>
-                <p class="text-gray-300 text-lg sm:text-xl">
-                    Total Players
-                </p>
-            </div>
-
-            <div class="flex flex-col text-center">
-                <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2">
-                    {{ sortedLeaderboard.reduce((sum, p) => sum + p.kills, 0) }}
-                </h2>
-                <p class="text-gray-300 text-lg sm:text-xl">
-                    Total Kills
-                </p>
-            </div>
-
-            <div class="flex flex-col text-center">
-                <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-2">
-                    {{ sortedLeaderboard.reduce((sum, p) => sum + p.wins, 0) }}
-                </h2>
-                <p class="text-gray-300 text-lg sm:text-xl">
-                    Total Wins
-                </p>
-            </div>
+        <div v-else>
+            <div class="loader"></div>
         </div>
     </div>
 
@@ -169,4 +171,21 @@ export default {
 </template>
 
 <style scoped>
+.loader {
+    border: 6px solid rgba(255, 255, 255, 0.2);
+    border-top: 6px solid white;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 </style>

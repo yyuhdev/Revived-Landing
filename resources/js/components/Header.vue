@@ -60,6 +60,11 @@ export default {
                     Home
                 </router-link>
 
+                <router-link to="/leaderboard"
+                             class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
+                    Leaderboard
+                </router-link>
+
                 <router-link to="/about"
                              class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
                     About Us

@@ -27,15 +27,15 @@ export default {
 
         <div class="flex w-1/2 m-auto gap-5">
             <div
-                class="flex bg-[#070707] border-1 border-white/30 w-1/2 p-5 rounded-sm hover:bg-white/5 transition-colors">
+                class="flex bg-gray border-1 border-white/30 w-1/2 p-5 rounded-sm hover:bg-white/5 transition-colors">
                 <div class="flex flex-col gap-3">
-                    <h3 class="text-2xl">Quality for All</h3>
+                    <h3 class="text-2xl">Quality for Everyone</h3>
                     <p>We aim to eliminate exclusive PVP servers by creating a high-quality, accessible PVP experience
                         for everyone.</p>
                 </div>
             </div>
             <div
-                class="flex bg-gray-[#070707] border-1 border-white/30 w-1/2 p-5 rounded-sm hover:bg-white/5 transition-colors">
+                class="flex bg-gray border-1 border-white/30 w-1/2 p-5 rounded-sm hover:bg-white/5 transition-colors">
                 <div class="flex flex-col gap-3">
                     <h3 class="text-2xl">Redefining PVP Practice</h3>
                     <p>By utilizing the latest technologies, we are transforming PVP and practice servers while adding
