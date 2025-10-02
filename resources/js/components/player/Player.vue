@@ -92,19 +92,19 @@ export default {
             <div class="flex flex-col justify-center gap-3 text-lg w-full">
                 <p class="flex justify-between border-b border-white/10 pb-1">
                     <span class="text-gray-300">Kills</span>
-                    <span class="font-semibold">{{ this.kills }}</span>
+                    <span class="font-semibold">{{ this.kills ?? 0 }}</span>
                 </p>
                 <p class="flex justify-between border-b border-white/10 pb-1">
                     <span class="text-gray-300">Deaths</span>
-                    <span class="font-semibold">{{ this.deaths }}</span>
+                    <span class="font-semibold">{{ this.deaths ?? 0 }}</span>
                 </p>
                 <p class="flex justify-between border-b border-white/10 pb-1">
                     <span class="text-gray-300">Wins</span>
-                    <span class="font-semibold">{{ this.wins }}</span>
+                    <span class="font-semibold">{{ this.wins ?? 0 }}</span>
                 </p>
                 <p class="flex justify-between">
                     <span class="text-gray-300">Losses</span>
-                    <span class="font-semibold">{{ this.losses }}</span>
+                    <span class="font-semibold">{{ this.losses ?? 0 }}</span>
                 </p>
             </div>
         </div>
