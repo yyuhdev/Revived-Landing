@@ -35,6 +35,7 @@ export default {
                     <input
                         v-on:keyup.enter="search"
                         id="searchBar"
+                        autofocus
                         class="border-2 border-gray-200/10 rounded-xl h-8 p-4 pl-9 focus:outline-none font-sm"
                         placeholder="Search for Player..."
                     >

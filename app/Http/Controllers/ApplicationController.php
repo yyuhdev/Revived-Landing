@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    public function saveApplication(Request $request)
+    public function saveApplication(Request $request): void
     {
         $request->validate([
             'ign' => 'required',
@@ -26,8 +26,5 @@ class ApplicationController extends Controller
             'experience' => $request->experience,
             'activity' => $request->activity
         ]);
-
-
-
     }
 }
