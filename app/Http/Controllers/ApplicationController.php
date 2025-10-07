@@ -6,7 +6,7 @@ use App\Models\StaffApplication;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
-{
+{   
     public function saveApplication(Request $request): void
     {
         $request->validate([

@@ -5,6 +5,7 @@ import About from "../components/about/About.vue";
 import NotFound from "../components/NotFound.vue";
 import Player from "../components/player/Player.vue";
 import Leaderboard from "../components/leaderboard/Leaderboard.vue";
+import Blog from "../components/blog/Blog.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -12,7 +13,8 @@ const routes = [
     { path: '/about', component: About },
     { path: '/:pathMatch(.*)*', component: NotFound },
     { path: '/player/:name', component: Player},
-    { path: '/leaderboard', component: Leaderboard}
+    { path: '/leaderboard', component: Leaderboard},
+    { path: '/blog', component: Blog}
 ];
 
 const router = createRouter({
