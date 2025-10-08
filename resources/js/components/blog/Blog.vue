@@ -10,7 +10,7 @@ export default {
 
 <template>
     <Header></Header>
-    <div class="flex flex-row justify-center min-h-[90vh] p-10 gap-5 text-white">
+    <div class="flex flex-row justify-center min-h-[90vh] p-10 gap-5 text-white max-w-[1920px] m-auto">
         <div class="w-3/4 border-2 border-white/30 rounded-sm p-5">
             <div class="flex flex-col">
                 <h1 class="text-2xl">Das hier ist ein epischer Titel</h1>
