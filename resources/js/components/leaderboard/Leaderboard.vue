@@ -162,7 +162,7 @@ export default {
                 </div>
             </div>
         </div>
-        <div v-else>
+        <div v-else class="flex justify-center items-center min-h-[60vh]">
             <div class="loader"></div>
         </div>
     </div>
@@ -172,20 +172,28 @@ export default {
 
 <style scoped>
 .loader {
-    border: 6px solid rgba(255, 255, 255, 0.2);
-    border-top: 6px solid white;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    animation: spin 1s linear infinite;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: relative;
+    width: 85px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#FFF 50px, transparent 0),
+    linear-gradient(#FFF 50px, transparent 0),
+    linear-gradient(#FFF 50px, transparent 0),
+    linear-gradient(#FFF 50px, transparent 0),
+    linear-gradient(#FFF 50px, transparent 0),
+    linear-gradient(#FFF 50px, transparent 0);
+    background-position: 0px center, 15px center, 30px center, 45px center, 60px center, 75px center, 90px center;
+    animation: rikSpikeRoll 0.65s linear infinite alternate;
+}
+@keyframes rikSpikeRoll {
+    0% { background-size: 10px 3px;}
+    16% { background-size: 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px, 10px 3px}
+    33% { background-size: 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px}
+    50% { background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px}
+    66% { background-size: 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px}
+    83% { background-size: 10px 3px, 10px 3px,  10px 10px, 10px 30px, 10px 50px, 10px 3px}
+    100% { background-size: 10px 3px, 10px 3px, 10px 3px,  10px 10px, 10px 30px, 10px 50px}
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+
 </style>
