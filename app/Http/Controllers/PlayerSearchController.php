@@ -29,7 +29,7 @@ class PlayerSearchController extends Controller
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        return ['kills' => 0, 'deaths' => 0, 'wins' => 0, 'losses' => 67];
+        return ['kills' => 0, 'deaths' => 0, 'wins' => 0, 'losses' => 0];
     }
 
     public function getGlobalStats(): array
@@ -47,6 +47,33 @@ class PlayerSearchController extends Controller
 
         if ($stmt->rowCount() > 0) {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function getPunishmentHistory($uuid): array
+    {
+        $username = config('punishments.username');
+        $password = config('punishments.password');
+        $host = config('punishments.host');
+        $database = config('punishments.database');
+
+        $conn = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $sql = "SELECT * FROM litebans_bans WHERE uuid = :uuid";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':uuid', $uuid);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($stmt->rowCount() > 0) {
+
+            foreach ($data as &$row) {
+                unset($row['ip']);
+            }
+
+            return $data;
         }
 
         return [];

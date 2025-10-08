@@ -12,6 +12,9 @@ Route::get('/stats/global', [PlayerSearchController::class, 'getGlobalStats'])
 Route::get('/stats/{uuid}', [PlayerSearchController::class, 'getStats'])
     ->name('api.stats.player');
 
+Route::get('/punishments/{uuid}', [PlayerSearchController::class, 'getPunishmentHistory'])
+    ->name('api.stats.punishment');
+
 Route::get('/player/profile/{name}', function ($name) {
     $req = Http::get("https://api.mojang.com/users/profiles/minecraft/{$name}");
     return $req->json();
