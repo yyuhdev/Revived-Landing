@@ -28,7 +28,7 @@ export default {
         <div class="max-w-[1950px] m-auto flex flex-row p-3 justify-between items-center relative">
             <div :class="{'hidden': menuOpen}" class="flex items-center gap-5">
                 <router-link to="/">
-                    <img src="./img/logo.png" class="max-h-10" alt="Revived.club Logo">
+                    <img src="../../images/logo.png" class="max-h-10" alt="Revived.club Logo">
                 </router-link>
 
                 <div class="relative hidden sm:flex items-center">
@@ -59,6 +59,11 @@ export default {
                 <router-link to="/"
                              class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
                     Home
+                </router-link>
+
+                <router-link to="/staff"
+                             class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
+                    Staff
                 </router-link>
 
                 <router-link to="/leaderboard"
