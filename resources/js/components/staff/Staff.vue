@@ -6,16 +6,8 @@ import StaffCard from "./StaffCard.vue";
 export default {
     name: "Staff",
     components: {Header, Footer, StaffCard},
-    data() {
-        return {
-            staff: [
-                {name: "yyuh", role: "Owner"},
-                {name: "xCallumm_", role: "Owner"},
-                {name: "marvinarchive", role: "Manager"},
-            ]
-        };
-    }
-};
+}
+
 </script>
 
 <template>
