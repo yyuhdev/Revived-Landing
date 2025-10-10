@@ -204,7 +204,7 @@ export default {
                         <h3 class="text-2xl font-semibold mb-4 text-center md:text-left">Match History</h3>
 
                         <div class="grid grid-cols-1 gap-4">
-                            <div v-for="match in displayedMatches" :key="match.id"
+                            <div v-for="match in displayedMatches.slice(0, 3)" :key="match.id"
                                  class="bg-black/30 border border-white/10 rounded-sm p-4 hover:bg-white/5 transition-colors">
 
                                 <div class="flex justify-between items-center mb-2">
