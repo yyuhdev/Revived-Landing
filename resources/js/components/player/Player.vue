@@ -34,6 +34,8 @@ export default {
             loaded: false,
             loadingError: false,
             punishments: [],
+            matchHistory: [],
+            showAllMatches: false,
             skinLink: 'https://visage.surgeplay.com/full/316/',
             headLink: 'https://visage.surgeplay.com/face/60/',
         }
@@ -53,7 +55,11 @@ export default {
         winRate() {
             if (this.totalGames === 0) return 0;
             return ((this.wins / this.totalGames) * 100).toFixed(1);
-        }
+        },
+        displayedMatches() {
+            if (this.showAllMatches) return this.matchHistory;
+            return this.matchHistory.slice(0, 1);
+        },
     },
     methods: {
         getStats() {
@@ -73,6 +79,11 @@ export default {
                             this.loaded = true;
                         });
 
+                    axios.get('/api/stats/history/' + this.uuid)
+                        .then(result => {
+                            this.matchHistory = result.data;
+                        });
+
                     axios.get('/api/punishments/' + this.uuid)
                         .then(result => {
                             this.punishments = result.data;
@@ -81,6 +92,14 @@ export default {
                 .catch(() => {
                     this.loadingError = true;
                 });
+        },
+        formatTeam(teamJson) {
+            try {
+                const team = JSON.parse(teamJson);
+                return Object.values(team).join(', ');
+            } catch (e) {
+                return 'Unknown';
+            }
         },
         formatUUID(uuid) {
             if (uuid.length !== 32) {
@@ -107,9 +126,7 @@ export default {
 
     <div class="text-white min-h-[100vh] py-8 px-4">
         <div v-if="loaded" class="max-w-6xl mx-auto">
-
             <div class="flex flex-col gap-5">
-
                 <div class="flex-shrink-0 flex gap-5">
                     <img
                         alt="Head"
@@ -181,6 +198,52 @@ export default {
                             <p class="text-gray-400 text-sm mb-2">Win Rate</p>
                             <p class="text-4xl font-bold">{{ winRate }}%</p>
                         </div>
+                    </div>
+
+                    <div v-if="matchHistory.length" class="bg-[#070707] border border-white/30 rounded-sm p-6 mb-6">
+                        <h3 class="text-2xl font-semibold mb-4 text-center md:text-left">Match History</h3>
+
+                        <div class="grid grid-cols-1 gap-4">
+                            <div v-for="match in displayedMatches" :key="match.id"
+                                 class="bg-black/30 border border-white/10 rounded-sm p-4 hover:bg-white/5 transition-colors">
+
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-gray-300 font-semibold">Match ID: {{ match.id }}</span>
+                                    <span class="text-gray-400 text-sm">{{
+                                            new Date(match.playedAt).toLocaleString()
+                                        }}</span>
+                                </div>
+
+                                <p class="text-sm text-gray-400 mb-1">
+                                    <span class="font-medium text-gray-300">Red Team:</span>
+                                    {{ formatTeam(match.redTeam) }}
+                                </p>
+
+                                <p class="text-sm text-gray-400 mb-1">
+                                    <span class="font-medium text-gray-300">Blue Team:</span>
+                                    {{ formatTeam(match.blueTeam) }}
+                                </p>
+
+                                <p class="text-sm text-gray-400 mb-1">
+                                    <span class="font-medium text-gray-300">Score:</span>
+                                    {{ match.redScore }} - {{ match.blueScore }}
+                                </p>
+
+                                <p class="text-sm text-gray-400">
+                                    <span class="font-medium text-gray-300">Elapsed Time:</span>
+                                    {{ match.elapsedTime }}s
+                                </p>
+                            </div>
+                        </div>
+
+                        <div v-if="matchHistory.length > 1" class="text-center mt-4">
+                            <button
+                                @click="showAllMatches = !showAllMatches"
+                                class="bg-white px-3 py-1 text-black rounded-sm hover:bg-white/90 transition-colors w-full sm:w-auto text-center">
+                                {{ showAllMatches ? 'See Less' : 'See More' }}
+                            </button>
+                        </div>
+
                     </div>
 
                     <div v-if="punishments.length" class="bg-[#070707] border border-white/30 rounded-sm p-6">

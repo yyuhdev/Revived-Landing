@@ -13,8 +13,8 @@ export default {
 <template>
     <Header/>
 
-    <div class="flex flex-col max-w-[1920px] mx-auto">
-        <div class="flex flex-wrap justify-center gap-10 mx-auto p-4 mt-10 flex-col">
+    <div class="flex flex-col max-w-[1920px] mx-auto text-white">
+        <div class="flex flex-wrap justify-center gap-10 mx-auto p-4 mt-10 flex-col items-center">
             <div class="flex flex-col gap-5">
                 <h1 class="text-3xl font-semibold mx-auto">Management</h1>
                 <div class="flex flex-row gap-5">

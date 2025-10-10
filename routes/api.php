@@ -6,6 +6,9 @@ use App\Http\Controllers\StatType;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/stats/history/{uuid}', [PlayerSearchController::class, 'getMatchHistory'])
+    ->name('api.stats.history');
+
 Route::get('/stats/global', [PlayerSearchController::class, 'getGlobalStats'])
     ->name('api.stats.global');
 

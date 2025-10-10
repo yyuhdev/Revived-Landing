@@ -70,7 +70,7 @@ export default {
 
     <div class="min-h-screen">
         <div v-if="!loading" class="text-white flex flex-col justify-center gap-10 py-12 px-4">
-            <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto w-full">
+            <div v-if="!loading && !error && sortedLeaderboard.length > 0" class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto w-full">
                 <button
                     @click="setSortBy('kills')"
                     :class="sortBy === 'kills' ? 'bg-white/10' : 'bg-[#070707]'"
