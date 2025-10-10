@@ -33,11 +33,6 @@
                     Apply
                 </router-link>
 
-                <router-link to="/about"
-                             class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors hover:cursor-pointer">
-                    About Us
-                </router-link>
-
                 <button onclick="window.open('https://discord.gg/8AdP3b6WBU')"
                         class="bg-white px-3 py-1 text-black rounded-sm hover:bg-white/90 transition-colors hover:cursor-pointer">
                     <i class="fa-brands fa-discord"></i>

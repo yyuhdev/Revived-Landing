@@ -66,17 +66,12 @@ export default {
                     Leaderboard
                 </router-link>
 
-                <router-link to="/about"
-                             class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
-                    About Us
-                </router-link>
-
                 <router-link to="/apply"
                              class="hover:text-white px-3 py-1 rounded-sm hover:bg-[#d6ebfd30] text-white/90 transition-colors w-full sm:w-auto text-center">
                     Apply
                 </router-link>
 
-                <button @click="window.open('https://discord.gg/8AdP3b6WBU')"
+                <button onclick="window.open('https://discord.gg/8AdP3b6WBU')"
                         class="bg-white px-3 py-1 text-black rounded-sm hover:bg-white/90 transition-colors w-full sm:w-auto text-center">
                     <i class="fa-brands fa-discord"></i> Discord
                 </button>
